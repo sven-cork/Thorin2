@@ -1,4 +1,53 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>About Page</h1>
+
+<h2>{{ page_title }}</h2>
+<p>
+    Gandalf suggested to Thorin and Company that they hire Bilbo Baggins to be their burglar in the Quest of Erebor, and
+    later fought in the Battle of Five Armies. Bilbo was also one of the bearers of the One Ring, and the first to
+    voluntarily give it up, although with some difficulty. He wrote many of his adventures in a book he called There and
+    Back Again. Bilbo adopted his second-cousin-once-removed Frodo Baggins to be his heir after his parents, Drogo
+    Baggins
+    and Primula Brandybuck, drowned in the Brandywine River.
+</p>
+
+{% for member in company %}
+
+<div class="row featurette">
+    {% if loop.index % 2 != 0 %}
+
+    <div class="col-md-7">
+        <h3>{{ loop.index}}. {{ member.name }}</h3>
+        <p>{{ member.description }}</p>
+    </div>
+
+    <div class="col-md-5">
+        <img src="{{ member.image_source }}" alt="" class="featurette-image image-responsive">
+    </div>
+
+    {% else %}
+
+    <div class="col-md-5">
+        <img src="{{ member.image_source }}" alt="" class="featurette-image image-responsive">
+    </div>
+
+    <div class="col-md-7">
+        <h3>{{ loop.index}}. {{ member.name }}</h3>
+        <p>{{ member.description }}</p>
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% if loop.index != loop.length %}
+
+<hr class="featurette-divider">
+
+{% endif %}
+
+
+
+{% endfor %}
+
 {% endblock %}
